@@ -10,13 +10,22 @@ df = pd.read_excel('april.xlsx')
 
 # SIDEBAR
 st.sidebar.header("Settings")
-categories = st.sidebar.multiselect(
-    "Select categories to show",
-    options=df[df['Category']!='Income']['Category'].unique(),
-    default=df[df['Category']!='Income']['Category'].unique()
-)
+categories = list(set(df.loc[:,'Category']))
+categories.remove('Income')
+cat_boxes = []
+for cat in categories:
+    cat_boxes.append(st.sidebar.checkbox(cat,value=True))
+cat_choices = {categories[i]:cat_boxes[i] for i in range(len(categories))}
+selected_categories = [cat for cat, selected in cat_choices.items() if selected]
 
-selected_df = df[(df['Category'].isin(categories)) & (df['Category'] != 'Income')]
+
+# categories = st.sidebar.multiselect(
+#     "Select categories to show",
+#     options=df[df['Category']!='Income']['Category'].unique(),
+#     default=df[df['Category']!='Income']['Category'].unique()
+# )
+
+selected_df = df[(df['Category'].isin(selected_categories)) & (df['Category'] != 'Income')]
 selected_df['Amount'] = abs(selected_df['Amount'])
 
 
@@ -45,7 +54,6 @@ with right_column:
 
 # MAIN PIE CHART
 df_grouped = selected_df[['Category','Amount']].groupby('Category').sum()
-print(df_grouped.index)
 
 fig_labels = df_grouped.index
 fig_values = df_grouped['Amount']
