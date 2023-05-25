@@ -18,14 +18,13 @@ st.sidebar.checkbox('Select/Deselect all categories', key='sel', on_change=modif
 st.sidebar.header("Categories")
 categories =  list(df[['Category','Amount']].groupby('Category').sum().sort_values(by=['Amount']).index)
 categories.remove('Income')
-cat_boxes = []
 
+cat_boxes = []
 for cat in categories:
     cat_boxes.append(st.sidebar.checkbox(cat,value=True, key=cat))
+
 cat_choices = {categories[i]:cat_boxes[i] for i in range(len(categories))}
 selected_categories = [cat for cat, selected in cat_choices.items() if selected]
-
-
 
 selected_df = df[(df['Category'].isin(selected_categories)) & (df['Category'] != 'Income')]
 selected_df['Amount'] = abs(selected_df['Amount'])
@@ -107,12 +106,7 @@ with tab2:
             xaxis_title='Date',
             yaxis_title='Value'
         )
-
-        # Render the chart using Plotly in Streamlit
         st.plotly_chart(fig, use_container_width=True)
-
-
-        #st.line_chart(spending_timeline,x='Date',y=cols)
 
 with tab3:
 # INDIVIDUAL TRANSACTIONS
