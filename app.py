@@ -55,31 +55,35 @@ with right_column:
     st.subheader('Savings')
     st.subheader(savings)
 
+tab1,tab2 = st.tabs(["Pie Chart", "Individual Transactions"])
 
+with tab1:
 # MAIN PIE CHART
-df_grouped = selected_df[['Category','Amount']].groupby('Category').sum()
+    df_grouped = selected_df[['Category','Amount']].groupby('Category').sum()
 
-fig_labels = df_grouped.index
-fig_values = df_grouped['Amount']
+    fig_labels = df_grouped.index
+    fig_values = df_grouped['Amount']
 
-fig = go.Figure(data=[go.Pie(labels=fig_labels, values=fig_values)])
-fig.update_traces(
-    textinfo='label+value+percent',
-    texttemplate='%{label}: £%{value:.0f}, %{percent}'
-)
-# Apply CSS styling to center the pie chart
-fig.update_layout(
-    autosize=True,
-    width=400,
-    height=400,
-    margin=dict(l=50, r=50, b=50, t=50),
-    paper_bgcolor='rgba(0,0,0,0)',
-)
+    fig = go.Figure(data=[go.Pie(labels=fig_labels, values=fig_values)])
+    fig.update_traces(
+        textinfo='label+value+percent',
+        texttemplate='%{label}: £%{value:.0f}, %{percent}'
+    )
+    # Apply CSS styling to center the pie chart
+    fig.update_layout(
+        autosize=True,
+        width=400,
+        height=400,
+        margin=dict(l=50, r=50, b=50, t=50),
+        paper_bgcolor='rgba(0,0,0,0)',
+    )
 
-# Display the chart using Streamlit
-cat_spend = str(int(selected_df['Amount'].sum()))
-st.plotly_chart(fig, use_container_width=True)
+    # Display the chart using Streamlit
+    cat_spend = str(int(selected_df['Amount'].sum()))
+    st.plotly_chart(fig, use_container_width=True)
+
+with tab2:
+    st.dataframe(selected_df)
+    
 st.markdown(f"<h2 style='text-align: center; color: black;'>£{cat_spend}</h2>", unsafe_allow_html=True)
 st.markdown(f"<p style='text-align: center; color: black;'>Spent across selected categories</p>", unsafe_allow_html=True)
-
-st.subheader(f'')
