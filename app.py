@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
+import plotly.express as px
 
 st.set_page_config(page_title="Monthly Spending Tracker",
                    page_icon=":money_with_wings:",
@@ -55,7 +56,7 @@ with right_column:
     st.subheader('Savings')
     st.subheader(savings)
 
-tab1,tab2 = st.tabs(["Pie Chart", "Individual Transactions"])
+tab1, tab2, tab3 = st.tabs(["Pie Chart", "Spend Timeline" , "Transactions"])
 
 with tab1:
 # MAIN PIE CHART
@@ -83,7 +84,27 @@ with tab1:
     st.plotly_chart(fig, use_container_width=True)
 
 with tab2:
+    st.checkbox('Show Combined Total?', key='show_total', value=True)
+    if len(selected_df) > 0:
+        spending_timeline = pd.DataFrame(columns = selected_df['Category'].unique(), index = pd.date_range(min(selected_df['Date']),max(selected_df['Date'])))
+        spending_timeline.reset_index(inplace=True)
+        spending_timeline.rename(columns={'index':'Date'},inplace=True)
+
+        transactions= selected_df.copy(deep=True)
+        for i, row in spending_timeline.iterrows():
+            categories = list(row.index)
+            categories.remove('Date')
+            for category in categories:
+                spending_timeline.loc[i,category] = transactions[(transactions['Category']==category) & (transactions['Date']<=row['Date'])]['Amount'].sum()
+        if st.session_state['show_total']:
+            spending_timeline['Total'] = spending_timeline.iloc[:,1:].sum(axis=1)
+
+        cols = list(spending_timeline.columns)
+        cols.remove('Date')
+        st.line_chart(spending_timeline,x='Date',y=cols)
+
+with tab3:
     st.dataframe(selected_df)
-    
+
 st.markdown(f"<h2 style='text-align: center; color: black;'>£{cat_spend}</h2>", unsafe_allow_html=True)
 st.markdown(f"<p style='text-align: center; color: black;'>Spent across selected categories</p>", unsafe_allow_html=True)
