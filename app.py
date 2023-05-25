@@ -10,24 +10,32 @@ df = pd.read_excel('april.xlsx')
 
 # SIDEBAR
 st.sidebar.header("Settings")
-categories = list(set(df.loc[:,'Category']))
+#categories = list(set(df.loc[:,'Category']))
+categories =  list(df[['Category','Amount']].groupby('Category').sum().sort_values(by=['Amount']).index)
+print(categories)
 categories.remove('Income')
 cat_boxes = []
+
+
 for cat in categories:
-    cat_boxes.append(st.sidebar.checkbox(cat,value=True))
+    cat_boxes.append(st.sidebar.checkbox(cat,value=True, key=cat))
 cat_choices = {categories[i]:cat_boxes[i] for i in range(len(categories))}
 selected_categories = [cat for cat, selected in cat_choices.items() if selected]
 
+def modify_all_categories(value):
+    for i, cat in enumerate(cat_choices):
+        st.session_state[cat] = value
+        #cat_boxes[i] = value
+        #cat_choices[cat] = value
+    return
 
-# categories = st.sidebar.multiselect(
-#     "Select categories to show",
-#     options=df[df['Category']!='Income']['Category'].unique(),
-#     default=df[df['Category']!='Income']['Category'].unique()
-# )
+if st.sidebar.button('Clear categories'):
+    modify_all_categories(False)
+if st.sidebar.button('Reset categories'):
+    modify_all_categories(True)
 
 selected_df = df[(df['Category'].isin(selected_categories)) & (df['Category'] != 'Income')]
 selected_df['Amount'] = abs(selected_df['Amount'])
-
 
 # MAINPAGE
 st.title("Spending")
