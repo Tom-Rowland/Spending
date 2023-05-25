@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
-import plotly.express as px
 
 st.set_page_config(page_title="Monthly Spending Tracker",
                    page_icon=":money_with_wings:",
@@ -78,7 +77,7 @@ with tab2:
 # SPEND TIMELINE
     st.checkbox('Show Combined Total?', key='show_total', value=True)
     if len(selected_df) > 0:
-        spending_timeline = pd.DataFrame(columns = selected_df['Category'].unique(), index = pd.date_range(min(selected_df['Date']),max(selected_df['Date'])))
+        spending_timeline = pd.DataFrame(columns = selected_df['Category'].unique(), index = pd.date_range(min(df['Date']),max(df['Date'])))
         spending_timeline.reset_index(inplace=True)
         spending_timeline.rename(columns={'index':'Date'},inplace=True)
 
@@ -102,15 +101,19 @@ with tab2:
 
         # Update layout
         fig.update_layout(
-            title='Line Chart',
+            title='Cumulative Spend',
             xaxis_title='Date',
-            yaxis_title='Value'
+            yaxis_title='£'
         )
+
+        fig.update_xaxes(range=[df['Date'].min(), df['Date'].max()])
+        fig.update_yaxes(range=[0, spending_timeline.iloc[-1,1:]*1.5])
+
         st.plotly_chart(fig, use_container_width=True)
 
 with tab3:
 # INDIVIDUAL TRANSACTIONS
-    st.dataframe(selected_df)
+    st.dataframe(selected_df.sort_values(['Date','Category','Subcategory','Amount']))
 
 st.markdown(f"<h2 style='text-align: center; color: black;'>£{cat_spend}</h2>", unsafe_allow_html=True)
 st.markdown(f"<p style='text-align: center; color: black;'>Spent across selected categories</p>", unsafe_allow_html=True)
