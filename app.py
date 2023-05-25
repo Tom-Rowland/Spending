@@ -13,8 +13,6 @@ df = pd.read_excel('april.xlsx')
 def modify_all_categories():
     for i, cat in enumerate(cat_choices):
         st.session_state[cat] = st.session_state.sel
-        #cat_boxes[i] = value
-        #cat_choices[cat] = value
     return
 st.sidebar.checkbox('Select/Deselect all categories', key='sel', on_change=modify_all_categories,value=True)
 st.sidebar.header("Categories")
@@ -33,10 +31,6 @@ selected_categories = [cat for cat, selected in cat_choices.items() if selected]
 
 selected_df = df[(df['Category'].isin(selected_categories)) & (df['Category'] != 'Income')]
 selected_df['Amount'] = abs(selected_df['Amount'])
-
-# # MAINPAGE
-# st.title("Spending")
-# st.markdown('##')
 
 # TOP KPIs
 income   = '£' + str(int(df[df['Category']=='Income']['Amount'].sum()))
