@@ -33,9 +33,9 @@ selected_categories = [cat for cat, selected in cat_choices.items() if selected]
 selected_df = df[(df['Category'].isin(selected_categories)) & (df['Category'] != 'Income')]
 selected_df['Amount'] = abs(selected_df['Amount'])
 
-# MAINPAGE
-st.title("Spending")
-st.markdown('##')
+# # MAINPAGE
+# st.title("Spending")
+# st.markdown('##')
 
 # TOP KPIs
 income   = '£' + str(int(df[df['Category']=='Income']['Amount'].sum()))
@@ -77,4 +77,9 @@ fig.update_layout(
 )
 
 # Display the chart using Streamlit
+cat_spend = str(int(selected_df['Amount'].sum()))
 st.plotly_chart(fig, use_container_width=True)
+st.markdown(f"<h2 style='text-align: center; color: black;'>£{cat_spend}</h2>", unsafe_allow_html=True)
+st.markdown(f"<p style='text-align: center; color: black;'>Spent across selected categories</p>", unsafe_allow_html=True)
+
+st.subheader(f'')
