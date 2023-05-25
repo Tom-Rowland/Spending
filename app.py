@@ -16,11 +16,9 @@ def modify_all_categories():
     return
 st.sidebar.checkbox('Select/Deselect all categories', key='sel', on_change=modify_all_categories,value=True)
 st.sidebar.header("Categories")
-#categories = list(set(df.loc[:,'Category']))
 categories =  list(df[['Category','Amount']].groupby('Category').sum().sort_values(by=['Amount']).index)
 categories.remove('Income')
 cat_boxes = []
-
 
 for cat in categories:
     cat_boxes.append(st.sidebar.checkbox(cat,value=True, key=cat))
@@ -53,7 +51,7 @@ with right_column:
 tab1, tab2, tab3 = st.tabs(["Pie Chart", "Spend Timeline" , "Transactions"])
 
 with tab1:
-# MAIN PIE CHART
+# PIE CHART
     df_grouped = selected_df[['Category','Amount']].groupby('Category').sum()
 
     fig_labels = df_grouped.index
@@ -78,6 +76,7 @@ with tab1:
     st.plotly_chart(fig, use_container_width=True)
 
 with tab2:
+# SPEND TIMELINE
     st.checkbox('Show Combined Total?', key='show_total', value=True)
     if len(selected_df) > 0:
         spending_timeline = pd.DataFrame(columns = selected_df['Category'].unique(), index = pd.date_range(min(selected_df['Date']),max(selected_df['Date'])))
@@ -95,9 +94,28 @@ with tab2:
 
         cols = list(spending_timeline.columns)
         cols.remove('Date')
-        st.line_chart(spending_timeline,x='Date',y=cols)
+        
+        fig = go.Figure()
+
+        # Add line traces for each column
+        for col in cols:
+            fig.add_trace(go.Scatter(x=spending_timeline['Date'], y=spending_timeline[col], mode='lines', name=col))
+
+        # Update layout
+        fig.update_layout(
+            title='Line Chart',
+            xaxis_title='Date',
+            yaxis_title='Value'
+        )
+
+        # Render the chart using Plotly in Streamlit
+        st.plotly_chart(fig, use_container_width=True)
+
+
+        #st.line_chart(spending_timeline,x='Date',y=cols)
 
 with tab3:
+# INDIVIDUAL TRANSACTIONS
     st.dataframe(selected_df)
 
 st.markdown(f"<h2 style='text-align: center; color: black;'>£{cat_spend}</h2>", unsafe_allow_html=True)
