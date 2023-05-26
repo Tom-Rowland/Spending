@@ -11,4 +11,6 @@ def main():
     else: 
         df = pd.DataFrame(columns=['Date','Category','Subcategory','Amount',])
 
+    if df['Date'].dtype == 'str':
+        df['Date'] = pd.to_datetime(df['Date'],dayfirst=True)
     return df
