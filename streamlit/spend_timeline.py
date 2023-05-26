@@ -5,7 +5,11 @@ import plotly.graph_objects as go
 def main(df, selected_df):
     st.checkbox('Show Combined Total?', key='show_total', value=True)
     if len(selected_df) > 0:
-        spending_timeline = pd.DataFrame(columns = selected_df['Category'].unique(), index = pd.date_range(min(df['Date']),max(df['Date'])))
+        if 'Subcategory' in selected_df.columns and len(set(selected_df['Category']))==1:
+            cat_or_subcat_string = 'Subcategory'
+        else:
+            cat_or_subcat_string = 'Category'
+        spending_timeline = pd.DataFrame(columns = selected_df[cat_or_subcat_string].unique(), index = pd.date_range(min(df['Date']),max(df['Date'])))
         spending_timeline.reset_index(inplace=True)
         spending_timeline.rename(columns={'index':'Date'},inplace=True)
 
@@ -14,7 +18,7 @@ def main(df, selected_df):
             categories = list(row.index)
             categories.remove('Date')
             for category in categories:
-                spending_timeline.loc[i,category] = transactions[(transactions['Category']==category) & (transactions['Date']<=row['Date'])]['Amount'].sum()
+                spending_timeline.loc[i,category] = transactions[(transactions[cat_or_subcat_string]==category) & (transactions['Date']<=row['Date'])]['Amount'].sum()
         if st.session_state['show_total']:
             spending_timeline['Total'] = spending_timeline.iloc[:,1:].sum(axis=1)
 
