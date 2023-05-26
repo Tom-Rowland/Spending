@@ -6,7 +6,7 @@ st.set_page_config(page_title="Monthly Spending Tracker",
                    page_icon=":money_with_wings:",
                    layout="wide")
 
-df = pd.read_csv('april.csv',parse_dates=['Date'])
+df = pd.read_csv('../data/transactions.csv',parse_dates=['Date'])
 
 # SIDEBAR
 selected_df, cat_spend = sidebar.main(df)
