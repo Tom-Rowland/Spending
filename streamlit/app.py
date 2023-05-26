@@ -6,8 +6,6 @@ st.set_page_config(page_title="Monthly Spending Tracker",
                    page_icon=":money_with_wings:",
                    layout="wide")
 
-#df = pd.read_csv('../data/transactions.csv',parse_dates=['Date'])
-
 # SIDEBAR
 df = upload.main()
 selected_df, cat_spend = sidebar.main(df)
@@ -25,6 +23,10 @@ with tab2:
     spend_timeline.main(df, selected_df)
 with tab3:
 # INDIVIDUAL TRANSACTIONS
+    sort_order = ['Date','Category','Subcategory','Amount']
+    for col in sort_order:
+        if col not in selected_df.columns:
+            sort_order.remove(col)
     st.dataframe(selected_df.sort_values(['Date','Category','Subcategory','Amount']))
 
 # SPEND ACROSS SELECTED CATEGORIES
