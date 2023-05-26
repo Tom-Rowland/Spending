@@ -1,14 +1,15 @@
 import pandas as pd
 import streamlit as st
-import sidebar, top_KPIs, pie_chart, spend_timeline, category_spend
+import upload, sidebar, top_KPIs, pie_chart, spend_timeline, category_spend
 
 st.set_page_config(page_title="Monthly Spending Tracker",
                    page_icon=":money_with_wings:",
                    layout="wide")
 
-df = pd.read_csv('../data/transactions.csv',parse_dates=['Date'])
+#df = pd.read_csv('../data/transactions.csv',parse_dates=['Date'])
 
 # SIDEBAR
+df = upload.main()
 selected_df, cat_spend = sidebar.main(df)
 
 # TOP KPIs

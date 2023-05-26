@@ -10,7 +10,8 @@ def main(df):
     st.sidebar.checkbox('Select/Deselect all categories', key='sel', on_change=modify_all_categories,value=True)
     st.sidebar.header("Categories")
     categories =  list(df[['Category','Amount']].groupby('Category').sum().sort_values(by=['Amount']).index)
-    categories.remove('Income')
+    if 'Income' in categories:
+        categories.remove('Income')
 
     cat_boxes = []
     for cat in categories:
