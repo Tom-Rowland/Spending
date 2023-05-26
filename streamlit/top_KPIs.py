@@ -9,18 +9,15 @@ def main(df):
     if balance > 0:
         savings += balance
 
-    for kpi in [income, expenses, savings]:
-        kpi = '£' + str(kpi)
-
     left_column, middle_column, right_column = st.columns(3)
     with left_column:
         st.subheader('Net income')
-        st.subheader(income)
+        st.subheader('£' + str(income))
 
     with middle_column:
         st.subheader('Expenses')
-        st.subheader(expenses)
+        st.subheader('£' + str(expenses))
 
     with right_column:
         st.subheader('Savings')
-        st.subheader(savings)
+        st.subheader('£' + str(savings))
