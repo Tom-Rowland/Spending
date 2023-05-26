@@ -21,3 +21,5 @@ def main(df):
     with right_column:
         st.subheader('Savings')
         st.subheader('£' + str(savings))
+        if balance > 0:
+            st.write('Including remaining balance')
