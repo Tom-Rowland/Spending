@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'spending-dashboard'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AB07E0037ADB4801938796389F68D347 }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
