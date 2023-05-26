@@ -2,9 +2,11 @@ import streamlit as st
 
 def main(df):
     def modify_all_categories():
-        for i, cat in enumerate(cat_choices):
+        for cat in cat_choices:
             st.session_state[cat] = st.session_state.sel
         return
+
+    
     st.sidebar.checkbox('Select/Deselect all categories', key='sel', on_change=modify_all_categories,value=True)
     st.sidebar.header("Categories")
     categories =  list(df[['Category','Amount']].groupby('Category').sum().sort_values(by=['Amount']).index)
@@ -18,9 +20,8 @@ def main(df):
     selected_categories = [cat for cat, selected in cat_choices.items() if selected]
 
     selected_df = df[(df['Category'].isin(selected_categories)) & (df['Category'] != 'Income')]
-    selected_df['Amount'] = abs(selected_df['Amount'])
+    selected_df.loc[:,'Amount'] = abs(selected_df['Amount'])
 
-    
     cat_spend = str(int(selected_df['Amount'].sum()))
 
     return selected_df, cat_spend

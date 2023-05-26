@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-import sidebar, top_KPIs, pie_chart, spend_timeline
+import sidebar, top_KPIs, pie_chart, spend_timeline, category_spend
 
 st.set_page_config(page_title="Monthly Spending Tracker",
                    page_icon=":money_with_wings:",
@@ -26,5 +26,5 @@ with tab3:
 # INDIVIDUAL TRANSACTIONS
     st.dataframe(selected_df.sort_values(['Date','Category','Subcategory','Amount']))
 
-st.markdown(f"<h2 style='text-align: center; color: black;'>£{cat_spend}</h2>", unsafe_allow_html=True)
-st.markdown(f"<p style='text-align: center; color: black;'>Spent across selected categories</p>", unsafe_allow_html=True)
+# SPEND ACROSS SELECTED CATEGORIES
+category_spend.main(cat_spend)
