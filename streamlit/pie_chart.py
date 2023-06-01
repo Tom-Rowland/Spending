@@ -1,7 +1,8 @@
 import streamlit as st
 import plotly.graph_objects as go
+import category_spend
 
-def main(selected_df):
+def main(selected_df, cat_spend):
     if 'Subcategory' in selected_df.columns and len(set(selected_df['Category']))==1:
         df_grouped = selected_df[['Subcategory','Amount']].groupby('Subcategory').sum()
     else:
@@ -26,3 +27,5 @@ def main(selected_df):
 
     # Display the chart using Streamlit
     st.plotly_chart(fig, use_container_width=True)
+
+    category_spend.main(cat_spend)

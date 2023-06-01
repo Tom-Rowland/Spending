@@ -1,8 +1,9 @@
 import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
+import category_spend
 
-def main(df, selected_df):
+def main(df, selected_df, cat_spend):
     st.checkbox('Show Combined Total?', key='show_total', value=True)
     if len(selected_df) > 0:
         if 'Subcategory' in selected_df.columns and len(set(selected_df['Category']))==1:
@@ -42,3 +43,5 @@ def main(df, selected_df):
         fig.update_yaxes(range=[0, spending_timeline.iloc[-1,1:]])
 
         st.plotly_chart(fig, use_container_width=True)
+
+        category_spend.main(cat_spend)
