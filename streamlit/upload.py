@@ -6,8 +6,10 @@ def main():
     if uploaded_file:
         df = pd.read_csv(uploaded_file, parse_dates=['Date'])
     else:
-        df = pd.DataFrame(columns=['Date','Category','Subcategory','Amount',])
+        return None
 
     if df['Date'].dtype in ['str','object']:
         df['Date'] = pd.to_datetime(df['Date'],dayfirst=True)
+    
+    df['Date'] = df['Date'].dt.date
     return df

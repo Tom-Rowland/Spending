@@ -9,7 +9,7 @@ def main(df, selected_df):
             cat_or_subcat_string = 'Subcategory'
         else:
             cat_or_subcat_string = 'Category'
-        spending_timeline = pd.DataFrame(columns = selected_df[cat_or_subcat_string].unique(), index = pd.date_range(min(df['Date']),max(df['Date'])))
+        spending_timeline = pd.DataFrame(columns = selected_df[cat_or_subcat_string].unique(), index = pd.date_range(min(df['Date']),max(df['Date'])).date)
         spending_timeline.reset_index(inplace=True)
         spending_timeline.rename(columns={'index':'Date'},inplace=True)
 
