@@ -11,4 +11,4 @@ if __name__ == '__main__':
     combined['Date'] = pd.to_datetime(combined['Date'],dayfirst=True)
     combined.sort_values(by='Date')
 
-    combined.to_csv('data/5 combined/combined.csv')
+    combined.to_csv('data/5 combined/combined.csv',index=False)
