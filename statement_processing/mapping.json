@@ -20,13 +20,14 @@
 
     "Food in office" : {
         "ZETTLE_*ELIOR" : "",
+        "Zettle_*ELIOR" : "",
         "TESCO STORES 6545" : "Lunch"
     },
 
     "Groceries" : {
         "VILLAGE WHOLE FOOD" : "",
         "TESCO STORES" : "",
-        "CO OP GROUP" : "",
+        "CO  OP GROUP" : "",
         "SAINSBURYS" : ""
     },
 
