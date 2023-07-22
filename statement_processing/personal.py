@@ -19,7 +19,7 @@ if __name__ == '__main__':
     statement.loc[food_in_office_empty_subcategory & (abs(statement['Amount']) < 2.50), 'Subcategory'] = 'Breakfast'
     statement.loc[food_in_office_empty_subcategory & (abs(statement['Amount']) >= 2.50), 'Subcategory'] = 'Lunch'
     
-    # Label groceries from HSBC as 'Solo'
+    # Label groceries as 'Solo'
     statement.loc[statement['Category'] == 'Groceries', 'Subcategory'] = 'Solo'
 
     # Ignore transfers to starling accounts, not real expenditure
