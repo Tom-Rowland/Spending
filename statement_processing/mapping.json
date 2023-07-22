@@ -1,12 +1,14 @@
 {
     "Income" : {
         "KUBRICK" : "Pay",
-        "ROWLAND J&C" : "Parents"
+        "ROWLAND J&C" : "Parents",
+        "Interest Earned" : "Interest"
     },
     
     "Transport" : {
         "TFL TRAVEL" : "TfL",
-        "TRAINLINE" : "Train"
+        "TRAINLINE" : "Train",
+        "UBER   *TRIP" : "Taxi"
     },
 
     "Gifts" : {
@@ -28,15 +30,18 @@
         "VILLAGE WHOLE FOOD" : "",
         "TESCO STORES" : "",
         "CO  OP GROUP" : "",
+        "Coop food" : "",
         "SAINSBURYS" : "",
-        "MARKS&SPENCER": ""
+        "MARKS&SPENCER": "",
+        "WAITROSE" : ""
     },
 
     "Eating Out/Takeaway" : {
         "DELIVEROO" : "Takeaway",
         "UBER* EATS" : "Takeaway",
         "BURGER KING" : "Eating Out",
-        "ROSAS LONDON" : "Eating Out"
+        "ROSAS LONDON" : "Eating Out",
+        "Wagamama" : "Eating Out"
     },
 
     "TV Subscription" : {
@@ -54,5 +59,29 @@
         "CANADA IN CALEDON USD" : "Resemble AI",
         "OPENAI.COM" : "OpenAI",
         "Microsoft G" : "Azure"
+    },
+
+    "Rent" : {
+        "33GowrieRoad Rent" : "Rent"
+    },
+
+    "Bills" : {
+        "NOW TV": "Broadband",
+        "A-2E666477-002" : "Energry",
+        "GETSAFE UK* CONTENTS" : "Contents Insurance",
+        "900061175414" : "Water",
+        "98629938" : "Council Tax"
+    },
+
+    "Charity" : {
+        "DDB0527" : "Thames Valley Air Ambulance"
+    },
+
+    "Home" : {
+        "SMOL LIMITED" : "Cleaning/Washing"
+    },
+
+    "Wellbeing" : {
+        "NOTHINGFISHY" : "Vitamins"
     }
 }
