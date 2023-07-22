@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('data/raw/TransactionHistory (1).csv',header=None)
+df = pd.read_csv('data/raw/TransactionHistory.csv',header=None)
 print(df.iloc[0])
 df.columns = ['Date', 'Description','Amount']
 print(df.iloc[0:5])
