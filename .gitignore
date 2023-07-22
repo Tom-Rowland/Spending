@@ -160,11 +160,5 @@ cython_debug/
 #.idea/
 
 #data
-april.xlsx
-april.csv
-x.py
-transactions.csv
-statement_processing/data/raw/TransactionHistory.csv
-statement_processing/data/3 manual changes/HSBC.csv
-statement_processing/data/2 autoprocessed/AutoProcessedTransactionHistory.csv
-statement_processing/data/3 manual changes/HSBC (labelled).csv
+*.csv
+*.xlsx
