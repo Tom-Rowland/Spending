@@ -160,7 +160,5 @@ cython_debug/
 #.idea/
 
 #data
-april.xlsx
-april.csv
-x.py
-transactions.csv
+*.csv
+*.xlsx

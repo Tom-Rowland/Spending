@@ -21,7 +21,7 @@ def main(df):
     selected_categories = [cat for cat, selected in cat_choices.items() if selected]
 
     selected_df = df[(df['Category'].isin(selected_categories)) & (df['Category'] != 'Income')]
-    selected_df.loc[:,'Amount'] = abs(selected_df['Amount'])
+    selected_df.loc[:,'Amount'] = selected_df['Amount'] * -1
 
     cat_spend = str(int(selected_df['Amount'].sum()))
 
