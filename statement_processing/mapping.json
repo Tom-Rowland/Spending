@@ -33,5 +33,15 @@
         "NOW X8818 Sports": "NowTV Sport",
         "Amazon Prime": "Amazon Prime",
         "NOW 9BCF1 Ents": "NowTV Entertainment"
+    },
+
+    "Drinks" : {
+        "GLOBE" : "Work drinks"
+    },
+
+    "Cloud and APIs" : {
+        "CANADA IN CALEDON USD" : "Resemble AI",
+        "OPENAI.COM" : "OpenAI",
+        "Microsoft G" : "Azure"
     }
 }
