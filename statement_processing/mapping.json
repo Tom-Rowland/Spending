@@ -8,7 +8,9 @@
     "Transport" : {
         "TFL TRAVEL" : "TfL",
         "TRAINLINE" : "Train",
-        "UBER   *TRIP" : "Taxi"
+        "UBER   *TRIP" : "Taxi",
+        "trainline" : "Train",
+        "Skyline Taxis" : "Taxi"
     },
 
     "Gifts" : {
@@ -28,20 +30,27 @@
 
     "Groceries" : {
         "VILLAGE WHOLE FOOD" : "",
+        "Village Wholefoods" : "",
         "TESCO STORES" : "",
+        "TESCO-STORES" : "",
         "CO  OP GROUP" : "",
         "Coop food" : "",
         "SAINSBURYS" : "",
         "MARKS&SPENCER": "",
-        "WAITROSE" : ""
+        "WAITROSE" : "",
+        "ASDA" : "",
+        "SP TBSF UK" : "",
+        "SENDERO CLAPHAM" : ""
     },
 
     "Eating Out/Takeaway" : {
         "DELIVEROO" : "Takeaway",
         "UBER* EATS" : "Takeaway",
+        "UBER   *EATS": "Takeaway",
         "BURGER KING" : "Eating Out",
         "ROSAS LONDON" : "Eating Out",
-        "Wagamama" : "Eating Out"
+        "Wagamama" : "Eating Out",
+        "PIZZAEXPRESS" : "Eating Out"
     },
 
     "TV Subscription" : {
@@ -82,6 +91,7 @@
     },
 
     "Wellbeing" : {
-        "NOTHINGFISHY" : "Vitamins"
+        "NOTHINGFISHY" : "Vitamins",
+        "BOOTS" : "Boots"
     }
 }
