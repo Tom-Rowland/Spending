@@ -7,8 +7,11 @@
     
     "Transport" : {
         "TFL TRAVEL" : "TfL",
+        "TFL CYCLE HIRE" : "Cycle",
         "TRAINLINE" : "Train",
-        "UBER   *TRIP" : "Taxi"
+        "UBER   *TRIP" : "Taxi",
+        "trainline" : "Train",
+        "Skyline Taxis" : "Taxi"
     },
 
     "Gifts" : {
@@ -28,20 +31,31 @@
 
     "Groceries" : {
         "VILLAGE WHOLE FOOD" : "",
+        "Village Wholefoods" : "",
         "TESCO STORES" : "",
+        "TESCO-STORES" : "",
         "CO  OP GROUP" : "",
         "Coop food" : "",
         "SAINSBURYS" : "",
+        "SAINSBURY'S": "",
         "MARKS&SPENCER": "",
-        "WAITROSE" : ""
+        "MARKS & SPENCER": "",
+        "WAITROSE" : "",
+        "ASDA" : "",
+        "SP TBSF UK" : "",
+        "SENDERO CLAPHAM" : "",
+        "The Source Bulk Foods" : "",
+        "WHOLE FOODS MARKET": ""
     },
 
     "Eating Out/Takeaway" : {
         "DELIVEROO" : "Takeaway",
         "UBER* EATS" : "Takeaway",
+        "UBER   *EATS": "Takeaway",
         "BURGER KING" : "Eating Out",
         "ROSAS LONDON" : "Eating Out",
-        "Wagamama" : "Eating Out"
+        "Wagamama" : "Eating Out",
+        "PIZZAEXPRESS" : "Eating Out"
     },
 
     "TV Subscription" : {
@@ -62,7 +76,7 @@
     },
 
     "Rent" : {
-        "33GowrieRoad Rent" : "Rent"
+        "33GowrieRoad Rent" : "33 Gowrie Road"
     },
 
     "Bills" : {
@@ -78,10 +92,12 @@
     },
 
     "Home" : {
-        "SMOL LIMITED" : "Cleaning/Washing"
+        "SMOL LIMITED" : "Cleaning/Washing",
+        "WHO GIVES A CRAP" : "Toilet Paper"
     },
 
     "Wellbeing" : {
-        "NOTHINGFISHY" : "Vitamins"
+        "NOTHINGFISH" : "Vitamins",
+        "BOOTS" : "Boots"
     }
 }
